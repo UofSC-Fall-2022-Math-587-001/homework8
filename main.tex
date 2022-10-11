@@ -4,6 +4,7 @@
 \usepackage{amsfonts}
 \usepackage{amssymb}
 \usepackage[margin=1in]{geometry}
+\usepackage{stackengine}
 \usepackage{hyperref}
 \hypersetup{
     colorlinks=true,
@@ -26,7 +27,7 @@
 
 \begin{document}
 
-\title{Homework 7}
+\title{Homework}
 
 \maketitle
 
@@ -35,72 +36,67 @@ I've copied the problem itself below and the question numbers for
 your convenience. 
 
 \begin{enumerate}
-	\item (3.1) Solve the following congruences. 
-	\begin{enumerate}
-		\item $x^{19} = 36 \mod 97$ 
-		\item $x^{137} = 428 \mod 541$ 
-		\item $x^{73} = 614 \mod 1159$ 
-		\item $x^{751} = 677 \mod 8023$ 
-		\item $x^{38993} = 328047 \mod 401227$ (Hint: $402117 = 
-			608 \cdot 661$)
-	\end{enumerate}
-	\item (3.4) Recall from Sect. 1.3 that \textit{Euler's phi function} 
-		$\phi(N)$ is defined by 
-	\begin{displaymath}
-		\phi(N) = \# \lbrace 0 \leq k < N \mid \operatorname{gcd}(
-		k,N) = 1 \rbrace
-	\end{displaymath}
-		In other words, $\phi(N)$ is the number of integers between 
-		$0$ and $N-1$ that are relatively prime to $N$, or 
-		equivariantly, the number of elements of $\mathbb{Z}/N\mathbb{Z}$ 
-		that have inverses modulo $N$. 
-	\begin{enumerate}
-		\item Compute the values of $\phi(6), \phi(9), \phi(15)$, 
-			and $\phi(17)$. 
-		\item If $p$ is prime, what is the value of $\phi(p)$? 
-		\item Prove \textit{Euler's formula} for all $a$ satisfying 
-			$\operatorname{gcd}(a,N) = 1$
-		\begin{displaymath}
-			a^{\phi(N)} = 1 \mod N 
-		\end{displaymath}
-			(Hint: Mimic the proof of Fermat's little theorem 
-			(Theorem 1.24), but instead of looking at all the 
-			multiples of $a$ as was done in (1.8), just take the 
-			multiples $ka$ of $a$ for values of $k$ satisfying 
-			$\operatorname{gcd}(k,N)=1$). 
-	\end{enumerate}
-	\item (3.7) Alice publishes her RSA public key: modulus $N = 2038667$  
-		and exponent $e=103$. 
-	\begin{enumerate}
-		\item Bob wants to send Alice the message $m=892383$. What 
-			ciphertext does Bob send to Alice?
-		\item Alice knows that her modulus factors into the produce of 
-			primes, one of which is $p=1301$. Find a decryption 
-			exponent $d$ for Alice. 
-		\item Alice receives the ciphertext $317730$ from Bob. Decrypt 
-			the message.
-	\end{enumerate}
-	\item (3.9) For each of the given values of $N = pq$ and $(p-1)(q-1)$, use 
-		the method described in Remark 3.11 to determine $p$ and $q$. 
-	\begin{enumerate}
-		\item $N = pq = 325717$ and $(p-1)(q-1) = 351520$. 
-		\item $N = pq = 77083921$ and $(p-1)(q-1) = 77066212$. 
-		\item $N = pq = 109404161$ and $(p-1)(q-1) = 109380612$. 
-		\item $N = pq = 172205490419$ and $(p-1)(q-1) = 172204660344$. 
-	\end{enumerate}
-	\item (3.15) Use the Miller-Rabin test on each of the following numbers. 
-		In each case, either provide a Miller-Rabin witness for the 
-		compositeness of $n$, or conclude that $n$ is probably prime 
-		by providing $10$ numbers that not Miller-Rabin witnesses for 
-		$n$. 
-	\begin{enumerate}
-		\item $n=1105$ 
-		\item $n=294409$ 
-		\item $n=294439$ 
-		\item $n=118901509$ 
-		\item $n=118901521$ 
-		\item $n=118901527$ 
-		\item $n=118915387$ 
-	\end{enumerate}
+	\item (3.17) The function $\pi(X)$ counts the number of primes between $2$ and $X$. 
+		\begin{enumerate}
+		\item Compue the values of $\pi(20),\pi(30)$, and $\pi(100)$. 
+		\item Write a program to compute $\pi(X)$ and use it to compute $\pi(X)$ and 
+			the ration $\pi(X)/(X/\ln X)$ for $X = 100, 1000, 10000,$ and $100000$. 
+			Does your list of ratios make the prime number theorem plausible? 
+		\end{enumerate}
+	\item (3.19) We noted in Sect. 3.4 that it really makes no sense to say
+		that the number n has probability $1/\ln n$ of being prime. Any
+		particular number that you choose either will be prime or will
+		not be prime; there are no numbers that are 35 \% prime and 65 \%
+		composite! In this exercise you will prove a result that gives
+		a more sensible meaning to the statement that a number has a
+		certain probability of being prime. You may use the prime
+		number theorem (Theorem 3.21) for this problem.
+		\begin{enumerate}
+			\item Fix a (large) number N and suppose that Bob
+			chooses a random number $n$ in the interval $N/2
+			\leq n \leq 3N/2$ . If he repeats this process many
+			times, prove that approximately $1/\ln N$ of his
+			numbers will be prime. More precisely, define
+			\begin{align*}
+				P(N) & := \frac{\text{number of primes between $N/2$ and 
+					$3N/2$}}{\text{number of integers between $N/2$ 
+					$3N/2$}} \\
+				     & = \left[\Centerstack{\text{Probability that a random integer $n$ 
+			     in the interval} \newline \text{$N/2 \leq n \leq 3N/2$ is a prime number}} \right]
+			\end{align*}
+			and prove that 
+			\begin{displaymath}
+				\lim_{N \to \infty} \frac{P(N)}{N/\ln N} = 1
+			\end{displaymath}
+			\item More generally, fix two numbers $c_1$ and $c_2$ satisfying $c_1 > 
+				c_2 > 0$. Bob chooses random numbers $n$ in the interval 
+				$c_1 N \leq n \leq c_2 N$. Keeping $c_1$ and $c_2$ fixed, let 
+			\begin{displaymath}
+				P(c_1,c_2;N) := \left[\Centerstack{\text{Probablity that an integer 
+					$n$ in the interval} \newline \text{$c_1N \leq n \leq 
+					c_2 N$ is a prime number}}\right]
+			\end{displaymath}
+			In the following formula, fill in the gox with a simple function of $N$ 
+			so that the statement is true. 
+			\begin{displaymath}
+				\lim_{N \to \infty} \frac{P(c_1,c_2;N)}{\framebox(3em,1.5em){}} = 1. 
+			\end{displaymath}
+		\end{enumerate}
+	\item (3.23) A prime of the form $2^n-1$ is called a \textit{Mersenne prime}. 
+		\begin{enumerate}
+			\item Factor each of the numbers $2^n-1$ for $n=2,3,\ldots,10$. Which ones 
+				are Mersenne primes?
+			\item Find the first seven Mersenne primes. (You may need a computer.)
+			\item If $n$ is even and $n > 2$, prove that $2^n-1$ is not prime.
+			\item If $3 \mid n$ and $n > 3$, prove that $2^n-1$ is not prime.
+			\item More generally, prove that if $n$ is a composite number, then 
+				$2^n-1$ is not prime. Thus all Mersenne primes have the form 
+				$2^p-1$ with $p$ a prime number. 
+			\item What is the largest known Mersenne prime? Are there any larger 
+				primes known? (You can find out at the "Great Internet Mersenne 
+				Prime Search" web site \url{www.mersenne.org/prime.htm}.)
+		\end{enumerate}
+			
+			
 \end{enumerate}
 \end{document}
