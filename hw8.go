@@ -2,7 +2,7 @@ package hw8
 
 import (
 	"errors"
-	// "github.com/UofSC-Fall-2022-Math-587-001/homework7/library"
+	// "github.com/UofSC-Fall-2022-Math-587-001/homework8/library"
 )
 
 func Pollard(N, b int) (int,error) {
